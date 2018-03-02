@@ -3,7 +3,7 @@ var Backbone = require ("backbone");
 var JSZip = require ("jszip");
 var xml2js = require ("xml2js");
 var VError = require ("verror");
-var fs = require ("fs");
+var fetch = require ("whatwg-fetch");
 var async = require ("async");
 var Chart = Backbone.Model.extend ({
 	/*
@@ -413,7 +413,7 @@ var Chart = Backbone.Model.extend ({
 			function (cb) {
 				me.zip = new JSZip ();
 				me.setTemplateName ();
-				fs.readFile (__dirname + "/../template/" + me.tplName + ".xlsx", function (err, data) {
+				fetch("./../template/" + me.tplName + ".xlsx", function (err, data) {
 					if (err) {
 						return cb (err);
 					};
